@@ -1,3 +1,5 @@
+import 'file:///D:/Projects/awesome_app/lib/pages/grid/widget_sliver_grid.dart';
+import 'file:///D:/Projects/awesome_app/lib/pages/list/widget_sliver_list.dart';
 import 'package:flutter/material.dart';
 
 class MainApp extends StatefulWidget {
@@ -10,6 +12,7 @@ class _MainAppState extends State<MainApp> {
   bool _snap = false;
   bool _floating = false;
   bool _stretch = true;
+  bool isGrid = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +31,33 @@ class _MainAppState extends State<MainApp> {
               floating: _floating,
               stretch: _stretch,
               expandedHeight: 200.0,
+              title: Text("Awesome App"),
+              actions: [
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      isGrid = true;
+                    });
+                  },
+                  child: Icon(Icons.grid_view),
+                ),
+                InkWell(
+                  onTap: () {
+                    setState(() {
+                      isGrid = false;
+                    });
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 16, left: 8),
+                    child: Icon(Icons.list_alt),
+                  ),
+                ),
+              ],
               flexibleSpace: const FlexibleSpaceBar(
-                title: Text('Awesome App'),
                 background: FlutterLogo(),
-                centerTitle: true,
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                    color: Colors.white,
-                    height: 150.0,
-                    child: Center(
-                      child: Text('$index',style: TextStyle(fontSize: 9),),
-                    ),
-                  );
-                },
-                childCount: 20,
-              ),
-            )
+            isGrid ? WidgetSliverGrid() : WidgetSliverList(),
           ],
         ),
       ),
