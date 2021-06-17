@@ -1,6 +1,9 @@
 import 'file:///D:/Projects/awesome_app/lib/pages/grid/widget_sliver_grid.dart';
+import 'package:awesome_app/pages/grid/bloc/grid_bloc.dart';
+import 'package:awesome_app/pages/list/bloc/list_bloc.dart';
 import 'package:awesome_app/pages/list/layout/widget_sliver_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainApp extends StatefulWidget {
   @override
