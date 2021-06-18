@@ -36,6 +36,7 @@ class _MainAppState extends State<MainApp> {
                 floating: _floating,
                 stretch: _stretch,
                 expandedHeight: 200.0,
+                backgroundColor: Colors.black,
                 title: Text("Awesome App"),
                 actions: [
                   InkWell(
@@ -59,7 +60,7 @@ class _MainAppState extends State<MainApp> {
                   ),
                 ],
                 flexibleSpace: const FlexibleSpaceBar(
-                  background: FlutterLogo(),
+                  background: Image(image: AssetImage("assets/images/bwhite.jpg"),fit: BoxFit.cover,),
                 ),
               ),
               isGrid ? WidgetSliverGrid() : WidgetSliverList(),
