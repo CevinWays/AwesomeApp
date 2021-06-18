@@ -33,21 +33,36 @@ class _WidgetSliverListState extends State<WidgetSliverList> {
       child: BlocBuilder(
         cubit: _listBloc,
         builder: (context, state) {
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                ItemModel itemModel = state is GetListDataState
-                    ? state.listItemModel.itemModel[index]
-                    : null;
-                return WidgetItemList(
-                  itemModel: itemModel,
-                );
-              },
-              childCount: state is GetListDataState
-                  ? state.listItemModel.itemModel.length
-                  : 0,
+          return SliverToBoxAdapter(
+            child: ListView.builder(
+                primary: false,
+              shrinkWrap: true,
+              itemCount: state is GetListDataState
+                        ? state.listItemModel.itemModel.length
+                        : 0,
+                itemBuilder: (context,index){
+                        ItemModel itemModel = state is GetListDataState
+                            ? state.listItemModel.itemModel[index]
+                            : null;
+                return WidgetItemList(itemModel: itemModel,);
+                }
             ),
           );
+          // return SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     (BuildContext context, int index) {
+          //       ItemModel itemModel = state is GetListDataState
+          //           ? state.listItemModel.itemModel[index]
+          //           : null;
+          //       return WidgetItemList(
+          //         itemModel: itemModel,
+          //       );
+          //     },
+          //     childCount: state is GetListDataState
+          //         ? state.listItemModel.itemModel.length
+          //         : 0,
+          //   ),
+          // );
         },
       ),
     );
