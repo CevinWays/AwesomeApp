@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class PhotosRepository{
   Future<ListItemModel> getListDataPhotos() async{
-    Response response = await DioHelper.dio.get(ConstantHelper.GET_LIST_PHOTOS,queryParameters: {"per_page": 50} );
+    Response response = await DioHelper.dio.get(ConstantHelper.GET_LIST_PHOTOS,queryParameters: {"per_page": 15} );
     if(response.statusCode == HttpStatus.ok){
       return ListItemModel.fromJson(response.data);
     }else{

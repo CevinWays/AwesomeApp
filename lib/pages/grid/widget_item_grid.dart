@@ -1,4 +1,5 @@
 import 'package:awesome_app/model/item_model.dart';
+import 'package:awesome_app/pages/detail/detail_page.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -13,19 +14,30 @@ class WidgetItemGrid extends StatefulWidget {
 class _WidgetItemGridState extends State<WidgetItemGrid> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Expanded(
-            flex: 6,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => DetailPage(
+                      itemModel: widget.itemModel,
+                    )));
+      },
+      child: Container(
+        padding: EdgeInsets.only(bottom: 8),
+        child: Column(
+          children: [
+            Expanded(
               child: CachedNetworkImage(
-                width: 200,
+                  width: 200,
                   height: 400,
                   fit: BoxFit.cover,
-                  imageUrl: widget.itemModel.src.large)),
-          // Expanded(
-          //     child: Text(widget.itemModel.photographer,style: TextStyle(fontSize: 14),)),
-        ],
+                  imageUrl: widget.itemModel.src.large),
+            ),
+            SizedBox(height: 8),
+            Text(widget.itemModel.photographer),
+          ],
+        ),
       ),
     );
   }

@@ -33,25 +33,45 @@ class _WidgetSliverGridState extends State<WidgetSliverGrid> {
       child: BlocBuilder(
         cubit: _gridBloc,
         builder: (context, state) {
-          return SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 300.0,
-              mainAxisSpacing: 10.0,
-              crossAxisSpacing: 10.0,
-              childAspectRatio: 4.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                ItemModel itemModel = state is GetGridDatState
-                    ? state.listItemModel.itemModel[index]
-                    : null;
-                return WidgetItemGrid(itemModel: itemModel);
-              },
-              childCount: state is GetGridDatState
-                  ? state.listItemModel.itemModel.length
-                  : 0,
+          return SliverToBoxAdapter(
+            child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                ),
+                primary: false,
+                shrinkWrap: true,
+                padding: EdgeInsets.all(8),
+                itemBuilder: (context,index){
+                  ItemModel itemModel = state is GetGridDatState
+                            ? state.listItemModel.itemModel[index]
+                            : null;
+                  return WidgetItemGrid(itemModel: itemModel);
+                },
+                itemCount: state is GetGridDatState
+                    ? state.listItemModel.itemModel.length
+                    : 0,
             ),
           );
+          // return SliverGrid(
+          //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          //     maxCrossAxisExtent: 300.0,
+          //     mainAxisSpacing: 10.0,
+          //     crossAxisSpacing: 10.0,
+          //     childAspectRatio: 4.0,
+          //   ),
+          //   delegate: SliverChildBuilderDelegate(
+          //     (BuildContext context, int index) {
+          //       ItemModel itemModel = state is GetGridDatState
+          //           ? state.listItemModel.itemModel[index]
+          //           : null;
+          //       return WidgetItemGrid(itemModel: itemModel);
+          //     },
+          //     childCount: state is GetGridDatState
+          //         ? state.listItemModel.itemModel.length
+          //         : 0,
+          //   ),
+          // );
         },
       ),
     );
