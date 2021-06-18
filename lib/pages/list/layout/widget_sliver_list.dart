@@ -20,25 +20,32 @@ class _WidgetSliverListState extends State<WidgetSliverList> {
     _listBloc = ListBloc();
     _listBloc.add(GetListDatEvent());
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener(
       cubit: _listBloc,
-      listener: (context,state){
-        if(state is GetDataFailed){
+      listener: (context, state) {
+        if (state is GetDataFailed) {
           Fluttertoast.showToast(msg: "Terjadi Kesalahan");
         }
       },
       child: BlocBuilder(
         cubit: _listBloc,
-        builder: (context,state){
+        builder: (context, state) {
           return SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    ItemModel itemModel = state is GetListDataState ? state.listItemModel.itemModel[index] : null;
-                return WidgetItemList(itemModel: itemModel,);
+              (BuildContext context, int index) {
+                ItemModel itemModel = state is GetListDataState
+                    ? state.listItemModel.itemModel[index]
+                    : null;
+                return WidgetItemList(
+                  itemModel: itemModel,
+                );
               },
-              childCount: state is GetListDataState ? state.listItemModel.itemModel.length : 0,
+              childCount: state is GetListDataState
+                  ? state.listItemModel.itemModel.length
+                  : 0,
             ),
           );
         },

@@ -26,42 +26,44 @@ class _MainAppState extends State<MainApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              pinned: _pinned,
-              snap: _snap,
-              floating: _floating,
-              stretch: _stretch,
-              expandedHeight: 200.0,
-              title: Text("Awesome App"),
-              actions: [
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      isGrid = true;
-                    });
-                  },
-                  child: Icon(Icons.grid_view),
-                ),
-                InkWell(
-                  onTap: () {
-                    setState(() {
-                      isGrid = false;
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 16, left: 8),
-                    child: Icon(Icons.list_alt),
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                pinned: _pinned,
+                snap: _snap,
+                floating: _floating,
+                stretch: _stretch,
+                expandedHeight: 200.0,
+                title: Text("Awesome App"),
+                actions: [
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isGrid = true;
+                      });
+                    },
+                    child: Icon(Icons.grid_view),
                   ),
+                  InkWell(
+                    onTap: () {
+                      setState(() {
+                        isGrid = false;
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 16, left: 8),
+                      child: Icon(Icons.list_alt),
+                    ),
+                  ),
+                ],
+                flexibleSpace: const FlexibleSpaceBar(
+                  background: FlutterLogo(),
                 ),
-              ],
-              flexibleSpace: const FlexibleSpaceBar(
-                background: FlutterLogo(),
               ),
-            ),
-            isGrid ? WidgetSliverGrid() : WidgetSliverList(),
-          ],
+              isGrid ? WidgetSliverGrid() : WidgetSliverList(),
+            ],
+          ),
         ),
       ),
     );
