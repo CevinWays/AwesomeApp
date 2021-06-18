@@ -1,6 +1,6 @@
 import 'package:awesome_app/model/item_model.dart';
 import 'package:awesome_app/pages/grid/bloc/grid_bloc.dart';
-import 'package:awesome_app/pages/grid/widget_item_grid.dart';
+import 'file:///D:/Projects/awesome_app/lib/pages/grid/layout/widget_item_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -53,25 +53,6 @@ class _WidgetSliverGridState extends State<WidgetSliverGrid> {
                     : 0,
             ),
           );
-          // return SliverGrid(
-          //   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          //     maxCrossAxisExtent: 300.0,
-          //     mainAxisSpacing: 10.0,
-          //     crossAxisSpacing: 10.0,
-          //     childAspectRatio: 4.0,
-          //   ),
-          //   delegate: SliverChildBuilderDelegate(
-          //     (BuildContext context, int index) {
-          //       ItemModel itemModel = state is GetGridDatState
-          //           ? state.listItemModel.itemModel[index]
-          //           : null;
-          //       return WidgetItemGrid(itemModel: itemModel);
-          //     },
-          //     childCount: state is GetGridDatState
-          //         ? state.listItemModel.itemModel.length
-          //         : 0,
-          //   ),
-          // );
         },
       ),
     );
